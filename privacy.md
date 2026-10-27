@@ -156,7 +156,7 @@ We don't ask for sensitive information such as health, religion or family proble
 | Daily counters for limits | Our server | 3 days |
 | Requests per minute | Our server | 10 minutes |
 | Anonymous ID | Our server (Supabase) | Kept until you ask us to delete it. It holds no name, email or device identifier. Deleting it also deletes its counters and reply copies |
-| Requested names | Our server | Until the next recording session, then deleted. A request holds only the name, the language and the day |
+| Requested names | Our server | Until the name is recorded, and no longer than 60 days. A request holds only the name, the language and the day |
 | Subscription notices from Apple | Our server | As long as accounting and tax law requires |
 | Technical logs (anonymous ID, no child text) | Supabase | About 1 day |
 | Letter and chat text sent to OpenAI | OpenAI | We ask OpenAI not to store it for later use. Under OpenAI's API data policy it may still keep it for up to 30 days to detect abuse, then deletes it, unless the law requires longer |
