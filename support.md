@@ -64,6 +64,8 @@ Santa's replies are written by AI and can sometimes be odd. Send a screenshot to
 
 ## Delete your data
 
+In the app: Settings (after the grown-ups check) > Privacy > Delete my data, then confirm twice. It deletes the letters, the chat, your child's name and scheduled calls on your device, and the anonymous ID with everything our server keeps under it. Premium stays with your Apple ID.
+
 Deleting the app removes everything SantaCall keeps on your device. Our server keeps no account and no text your child wrote; see the [Privacy Policy]({{ '/privacy/' | relative_url }}) for what it does keep and for how long. For any other request, write to tkachenko.daiv@gmail.com.
 
 ## Legal

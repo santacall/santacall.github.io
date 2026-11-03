@@ -40,7 +40,7 @@ The app keeps the following on your iPhone or iPad. It does not send it to us:
 
 Notifications about the call, the reminder and Santa's letters are created on your device. Their text, which can include your child's name, does not pass through our server.
 
-You delete all of this by deleting the app. Today's chat is cleared at local midnight.
+You delete all of this with "Delete my data" in the app's settings or by deleting the app. Today's chat is cleared at local midnight.
 
 ### 2.2 Letters and chat with Santa (only after a grown-up agrees)
 
@@ -51,6 +51,8 @@ To write Santa's replies, the app sends to our server:
 - the language and time zone of your device, so Santa replies in the right language and the daily limits reset at your local midnight;
 - if you have Premium, the signed record of the subscription that Apple gives the app (the product, its dates and Apple's transaction numbers), so the server can check it and apply the Premium limit. The server checks it and does not store it;
 - an anonymous ID.
+
+**Your child's name and the AI.** Our server replaces your child's name with a mark before it asks the AI service for a reply, and writes the name into Santa's reply itself. The AI service never sees the name; it is only told whether Santa writes to a boy or a girl. The copy of the reply our server keeps holds the mark, not the name.
 
 **The anonymous ID.** When the app first talks to our server, the server gives it a random ID (anonymous sign-in with our provider Supabase). It is not linked to your email, your name or your Apple ID. We use it to count letters and messages for the daily limits and to deliver Santa's replies.
 
@@ -155,7 +157,7 @@ We don't ask for sensitive information such as health, religion or family proble
 | Santa's reply | Our server | Up to 24 hours, then deleted |
 | Daily counters for limits | Our server | 3 days |
 | Requests per minute | Our server | 10 minutes |
-| Anonymous ID | Our server (Supabase) | Kept until you ask us to delete it. It holds no name, email or device identifier. Deleting it also deletes its counters and reply copies |
+| Anonymous ID | Our server (Supabase) | Deleted after 90 days without a letter or a chat message, or at once with "Delete my data" in the app's settings. It holds no name, email or device identifier. Deleting it also deletes its counters and reply copies |
 | Requested names | Our server | Until the name is recorded, and no longer than 60 days. A request holds only the name, the language and the day |
 | Subscription notices from Apple | Our server | As long as accounting and tax law requires |
 | Technical logs (anonymous ID, no child text) | Supabase | About 1 day |
@@ -173,7 +175,7 @@ We share data only with the companies below. Apple handles purchases under its o
 |---|---|---|---|
 | **Apple** (App Store, StoreKit) | Sells and renews subscriptions, delivers the app, sends our server notices about subscription events | Your purchase, handled under Apple's own privacy policy. The app sends Apple no data about letters, chat or calls | Apple's locations |
 | **Supabase** | Hosts our server and database; gives out the anonymous ID | Anonymous ID, requests from the app (letter and chat text passes through without being stored), the signed subscription record (checked, not stored), counters, reply copies, requested names, subscription notices, IP address, technical logs | EU (Frankfurt, Germany) |
-| **OpenAI** | Checks texts for harmful content and writes Santa's replies | Letter or chat text after our filter, including your child's first name, and the language. No anonymous ID or other identifier | United States |
+| **OpenAI** | Checks texts for harmful content and writes Santa's replies | Letter or chat text after our filter, with your child's name replaced by a mark; the language; whether Santa writes to a boy or a girl. No name, anonymous ID or other identifier | United States |
 | **Amplitude** | Usage analytics (only if analytics is on) | Usage events, random app ID on the device, app version, device model, iOS version, language, IP address of the connection. From our server: subscription events with the product, price and currency under a one-way code | United States |
 | **Google** (Firebase Crashlytics) | Crash reports (only if analytics is on) | Crash reports, device model, iOS version, app version, random installation ID | United States |
 
@@ -200,10 +202,11 @@ Depending on where you live, you have the right to:
 
 - **AI replies:** turn off "Santa's personal replies" in the app's settings. Letters then get replies from templates, and the chat closes.
 - **Analytics and crash reports:** turn them off in the app's settings.
-- **Data on your device:** delete the app.
+- **Your data in the app and on our server:** in the app's settings (behind the grown-ups check), Privacy > "Delete my data". It deletes the letters, the chat, your child's name and scheduled calls on your device, and the anonymous ID with everything our server keeps under it. Premium stays with your Apple ID.
+- **Data on your device only:** delete the app.
 - **Anything else:** write to tkachenko.daiv@gmail.com. We answer within one month.
 
-Because SantaCall has no accounts, we usually can't tell which data on our server belongs to you. Most of it disappears on its own (see section 7). If you write to us, we will help as far as we can find your data, and we may ask for details that help us find it. We won't ask for more information than we need.
+Because SantaCall has no accounts, for a request by email we usually can't tell which data on our server belongs to you; "Delete my data" in the app doesn't have this problem. Most of it disappears on its own (see section 7). If you write to us, we will help as far as we can find your data, and we may ask for details that help us find it. We won't ask for more information than we need.
 
 **US residents.** We don't sell personal information, we don't share it for cross-context behavioral advertising, and we don't use it for targeted advertising. You can ask to know or delete personal information through tkachenko.daiv@gmail.com, and we won't treat you differently for using your rights.
 
@@ -237,7 +240,7 @@ SantaCall is a family app. A grown-up sets up calls and buys Premium. A child ta
 - no ads, no selling of data, no profiles for marketing;
 - analytics and crash reports carry no names and no text the child writes.
 
-**Parents' choices.** A grown-up can turn AI replies off at any time in the app's settings ("Santa's personal replies"). Without consent, letters get replies from templates built on the device, and the chat is not available. A grown-up can delete everything on the device by deleting the app.
+**Parents' choices.** A grown-up can turn AI replies off at any time in the app's settings ("Santa's personal replies"). Without consent, letters get replies from templates built on the device, and the chat is not available. A grown-up can delete the child's data on the device and on our server with "Delete my data" in the app's settings.
 
 If you think your child sent us personal information without a grown-up's agreement, write to tkachenko.daiv@gmail.com and we will delete what we can find.
 
