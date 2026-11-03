@@ -7,7 +7,7 @@ permalink: /privacy/
 # Privacy Policy
 
 **App:** Santa Claus Video Call & Text (SantaCall) for iPhone and iPad, version 2.0 and later  
-**Effective date:** 27 October 2026
+**Effective date:** 3 November 2026
 
 ## The short version
 
@@ -95,7 +95,7 @@ Analytics events and crash reports do not include the text of letters or chat me
 
 The app does not send Amplitude a location. Like any internet service, Amplitude sees the IP address of the connection, and it may use it to estimate an approximate location, such as the country.
 
-Usage analytics and crash reports are on when you install the app. You can turn them off and on at any time in the app's settings (the gear on the home screen). When they are off, the app sends no events and no crash reports, and crash reports not yet sent are deleted.
+In the European Economic Area (the EU, Iceland, Liechtenstein and Norway), usage analytics and crash reports are off until you allow them: the app asks once, before anything is sent. Elsewhere they are on when you install the app. You can turn them off and on at any time in the app's settings (the gear on the home screen). When they are off, the app sends no events and no crash reports, and crash reports not yet sent are deleted.
 
 ### 2.6 When you write to us
 
