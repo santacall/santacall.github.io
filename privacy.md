@@ -84,13 +84,15 @@ Premium subscriptions are sold and charged by Apple through the App Store. We do
 
 When a subscription starts, renews, expires or is refunded, Apple's server sends our server a signed notice. We keep from it: the kind of event, the product, Apple's transaction numbers, the price and currency, the dates, and whether it was a test purchase. The notice has no name, no Apple ID and no anonymous ID, and we don't link it to the anonymous ID. We use it to count subscriptions and revenue. Our server sends a summary of each event (the event, the product, the price and currency) to Amplitude under a one-way code made from Apple's transaction number, not under any ID of your device.
 
+The app itself also notices on your device when a subscription renews, is refunded or starts outside the app's subscription screen (for example after Ask to Buy approval, or on another device). It sends Amplitude a usage event with the kind of change and the product, without the price, under the app's random ID on this device (2.5). These events follow the usage-analytics switch: while it is off, the app doesn't send them, now or later.
+
 Apple may also give us statistics about downloads and sales. Apple only shares usage statistics from people who agreed in iOS settings to share data with app developers, and only in a form that doesn't identify them.
 
 ### 2.5 Usage analytics and crash reports
 
 To see which parts of the app work and which don't, the app uses two services:
 
-- **Amplitude** (usage analytics) receives events about how the app is used: when the app is installed, updated or opened and how long it is used, and events such as a screen was opened, a call was scheduled, a purchase finished or was cancelled (with the product, price and currency), a letter was sent or a daily limit was reached. Each event comes with technical details: app version, device model, iOS version, language, and a random ID for the app on this device. It is not the advertising identifier (IDFA) and not the vendor identifier of iOS. Amplitude stores our data in its US data center.
+- **Amplitude** (usage analytics) receives events about how the app is used: when the app is installed, updated or opened and how long it is used, and events such as a screen was opened, a call was scheduled, a purchase finished or was cancelled (with the product, price and currency), a subscription renewed, was refunded or started outside the subscription screen (with the product, without the price), a letter was sent, a daily limit was reached, or the app crashed the last time it was used (only that it happened: the details of a crash go to Crashlytics). Each event comes with technical details: app version, device model, iOS version, language, and a random ID for the app on this device. It is not the advertising identifier (IDFA) and not the vendor identifier of iOS. Amplitude stores our data in its US data center.
 - **Firebase Crashlytics** (by Google) receives a report when the app crashes: what the app was doing at that moment, device model, iOS version, app version, the time of the crash, and a random installation ID.
 
 Analytics events and crash reports do not include the text of letters or chat messages, your child's name or age, or the anonymous ID our server uses.
