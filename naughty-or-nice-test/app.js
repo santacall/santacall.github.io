@@ -188,6 +188,20 @@
     return total;
   }
 
+  // shrink a line until it fits: other languages run longer than English
+  function fit(ctx, text, weight, size, family, maxW) {
+    let px = size;
+    ctx.font = `${weight} ${px}px ${family}`;
+    while (ctx.measureText(text).width > maxW && px > 18) { px -= 2; ctx.font = `${weight} ${px}px ${family}`; }
+    return px;
+  }
+  function fitSpaced(ctx, text, weight, size, family, gap, maxW) {
+    let px = size;
+    const width = () => Array.from(text).reduce((a, c) => a + ctx.measureText(c).width, 0) + gap * (Array.from(text).length - 1);
+    ctx.font = `${weight} ${px}px ${family}`;
+    while (width() > maxW && px > 10) { px -= 1; ctx.font = `${weight} ${px}px ${family}`; }
+  }
+
   function star(ctx, cx, cy, r) {
     ctx.beginPath();
     for (let i = 0; i < 10; i++) {
@@ -225,19 +239,20 @@
 
     // head
     ctx.fillStyle = INK.gold; star(ctx, mid, 172, 26); star(ctx, mid - 70, 180, 14); star(ctx, mid + 70, 180, 14);
-    ctx.fillStyle = INK.green; ctx.font = `600 30px ${F.b}`;
+    ctx.fillStyle = INK.green; fitSpaced(ctx, C.office, 600, 30, F.b, 7, 1500);
     spaced(ctx, C.office, mid, 262, 7);
 
-    ctx.fillStyle = INK.red; ctx.font = `700 158px ${F.d}`;
-    ctx.fillText(low ? C.titleLow : C.title, mid, 432);
-    ctx.fillStyle = INK.navy; ctx.font = `700 34px ${F.b}`;
+    ctx.fillStyle = INK.red;
+    const titlePx = fit(ctx, low ? C.titleLow : C.title, 700, 158, F.d, 1640);
+    ctx.fillText(low ? C.titleLow : C.title, mid, 432 - (158 - titlePx) * 0.28);
+    ctx.fillStyle = INK.navy; fitSpaced(ctx, C.sub, 700, 34, F.b, 18, 1100);
     const subW = spaced(ctx, C.sub, mid, 506, 18);
     ctx.strokeStyle = INK.gold; ctx.lineWidth = 3;
-    [[mid - subW / 2 - 250, mid - subW / 2 - 36], [mid + subW / 2 + 36, mid + subW / 2 + 250]].forEach(([a, b]) => {
+    [[Math.max(200, mid - subW / 2 - 250), mid - subW / 2 - 36], [mid + subW / 2 + 36, Math.min(CW - 200, mid + subW / 2 + 250)]].forEach(([a, b]) => {
       ctx.beginPath(); ctx.moveTo(a, 494); ctx.lineTo(b, 494); ctx.stroke();
     });
 
-    ctx.fillStyle = INK.soft; ctx.font = `400 46px ${F.d}`;
+    ctx.fillStyle = INK.soft; fit(ctx, C.lead, 400, 46, F.d, 1400);
     ctx.fillText(C.lead, mid, 622);
 
     // name
@@ -254,24 +269,28 @@
     ctx.beginPath(); ctx.moveTo(mid - 560, 850); ctx.lineTo(mid - 22, 850); ctx.moveTo(mid + 22, 850); ctx.lineTo(mid + 560, 850); ctx.stroke();
     ctx.fillStyle = INK.gold; ctx.save(); ctx.translate(mid, 850); ctx.rotate(Math.PI / 4); ctx.fillRect(-9, -9, 18, 18); ctx.restore();
 
-    ctx.fillStyle = INK.navy; ctx.font = `400 48px ${F.d}`;
+    ctx.fillStyle = INK.navy;
     const y1 = o.name ? 940 : 968;
-    ctx.fillText(low ? C.body1Low : C.body1, mid, y1);
-    ctx.fillText(fill(low ? C.body2Low : C.body2, { year: o.year }), mid, y1 + 68);
+    const b1 = low ? C.body1Low : C.body1;
+    const b2 = fill(low ? C.body2Low : C.body2, { year: o.year });
+    const bodyPx = Math.min(fit(ctx, b1, 400, 48, F.d, 1500), fit(ctx, b2, 400, 48, F.d, 1500));
+    ctx.font = `400 ${bodyPx}px ${F.d}`;
+    ctx.fillText(b1, mid, y1);
+    ctx.fillText(b2, mid, y1 + 68);
 
     // signature
     const sx = 500;
     ctx.save(); ctx.translate(sx, 1236); ctx.rotate(-0.06);
-    ctx.fillStyle = INK.navy; ctx.font = `700 132px ${F.h}`; ctx.fillText(C.signature, 0, 0); ctx.restore();
+    ctx.fillStyle = INK.navy; fit(ctx, C.signature, 700, 132, F.h, 560); ctx.fillText(C.signature, 0, 0); ctx.restore();
     ctx.strokeStyle = INK.navy; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(sx - 250, 1272); ctx.lineTo(sx + 250, 1272); ctx.stroke();
-    ctx.fillStyle = INK.soft; ctx.font = `600 22px ${F.b}`;
+    ctx.fillStyle = INK.soft; fitSpaced(ctx, C.sigCaption, 600, 22, F.b, 5, 520);
     spaced(ctx, C.sigCaption, sx, 1312, 5);
 
     // date + address
-    ctx.fillStyle = INK.soft; ctx.font = `500 30px ${F.b}`;
-    ctx.fillText(fill(C.date, { date: o.date }), mid, 1272);
-    ctx.font = `500 24px ${F.b}`; ctx.globalAlpha = 0.8;
-    ctx.fillText(C.url, mid, 1362); ctx.globalAlpha = 1;
+    ctx.fillStyle = INK.soft; fit(ctx, fill(C.date, { date: o.date }), 500, 30, F.b, 560);
+    ctx.fillText(fill(C.date, { date: o.date }), mid + 20, 1272);
+    fit(ctx, C.url, 500, 24, F.b, 640); ctx.globalAlpha = 0.8;
+    ctx.fillText(C.url, mid + 20, 1362); ctx.globalAlpha = 1;
 
     // seal
     const zx = 1610; const zy = 1178;
@@ -288,11 +307,11 @@
     }
     ctx.beginPath(); ctx.arc(zx, zy, 138, 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = INK.goldHi; ctx.lineWidth = 4; ctx.beginPath(); ctx.arc(zx, zy, 120, 0, Math.PI * 2); ctx.stroke();
-    ctx.fillStyle = INK.cream; ctx.font = `700 17px ${F.b}`;
+    ctx.fillStyle = INK.cream; fitSpaced(ctx, C.sealTop, 700, 17, F.b, 3, 176);
     spaced(ctx, C.sealTop, zx, zy - 58, 3);
     ctx.font = `700 92px ${F.d}`;
     ctx.fillText(o.pct + '%', zx, zy + 32);
-    ctx.fillStyle = INK.goldHi; ctx.font = `700 19px ${F.b}`;
+    ctx.fillStyle = INK.goldHi; fitSpaced(ctx, low ? C.sealBottomLow : C.sealBottom, 700, 19, F.b, 4, 176);
     spaced(ctx, low ? C.sealBottomLow : C.sealBottom, zx, zy + 74, 4);
   }
 

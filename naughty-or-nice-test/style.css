@@ -299,6 +299,18 @@ kbd { display: none; min-width: 26px; padding: 3px 0; text-align: center; font: 
   .js body[data-stage="quiz"] .hero-copy, .js body[data-stage="result"] .hero-copy { display: none; }
   .js body[data-stage="quiz"] .hero, .js body[data-stage="result"] .hero { padding-top: 22px; }
   .sheet { margin: 0 auto; }
+  /* phone, start screen: the Start button has to sit above Safari's bottom bar (QA 18.11, iPhone 15 Pro Max) */
+  .js body:not([data-stage]) .top, .js body[data-stage="start"] .top { padding-top: 58px; gap: 2px 20px; }
+  .js body:not([data-stage]) .hero, .js body[data-stage="start"] .hero { padding-top: 18px; gap: 22px; }
+  .intro { margin-top: 14px; font-size: 1rem; line-height: 1.5; }
+  .sheet { padding-top: 18px; }
+  .sheet-head { margin-bottom: 14px; }
+  .js .start { display: none; flex-direction: column; }
+  .js body:not([data-stage]) .start, .js body[data-stage="start"] .start { display: flex; }
+  .start .name-input { margin-top: 12px; }
+  .start .btn { order: 1; margin-top: 14px; }
+  .start .help { order: 2; margin-top: 12px; text-align: center; }
+  .start .start-meta { order: 3; margin-top: 6px; }
   .js body[data-stage="result"] .top { padding-top: 62px; }
   .js body[data-stage="result"] .top nav { display: none; }
 }
@@ -370,5 +382,7 @@ kbd { display: none; min-width: 26px; padding: 3px 0; text-align: center; font: 
   @page { size: landscape; margin: 10mm; }
   body { background: #fff; }
   body.has-cert > *:not(.print-only) { display: none !important; }
-  body.has-cert > .print-only { display: block; width: 100%; max-height: 100vh; object-fit: contain; }
+  html, body { margin: 0; padding: 0; height: auto; min-height: 0; }
+  /* Safari ignores @page size, so the sheet may be portrait: cap the height so the 7:5 image fits one page either way */
+  body.has-cert > .print-only { display: block; width: auto; height: auto; max-width: 100%; max-height: 165mm; margin: 0 auto; break-inside: avoid; page-break-inside: avoid; }
 }
