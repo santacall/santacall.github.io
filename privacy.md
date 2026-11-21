@@ -7,7 +7,7 @@ permalink: /privacy/
 # Privacy Policy
 
 **App:** Santa Claus Video Call & Text (SantaCall) for iPhone and iPad, version 2.0 and later  
-**Effective date:** 3 November 2026
+**Effective date:** 21 November 2026
 
 ## The short version
 

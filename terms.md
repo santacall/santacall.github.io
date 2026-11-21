@@ -7,7 +7,7 @@ permalink: /terms/
 # Terms of Use
 
 **App:** Santa Claus Video Call & Text (SantaCall) for iPhone and iPad  
-**Effective date:** 27 October 2026
+**Effective date:** 21 November 2026
 
 The app is licensed to you under Apple's Standard Licensed Application End User License Agreement (EULA):
 [apple.com/legal/internet-services/itunes/dev/stdeula](https://www.apple.com/legal/internet-services/itunes/dev/stdeula/).
