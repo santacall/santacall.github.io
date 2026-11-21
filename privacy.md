@@ -41,7 +41,7 @@ The app keeps the following on your iPhone or iPad. It does not send it to us:
 
 Notifications about the call, the reminder and Santa's letters are created on your device. Their text, which can include your child's name, does not pass through our server.
 
-You delete all of this with "Delete my data" in the app's settings or by deleting the app. The calls you bought are the exception: they stay on this device after both, so a paid call isn't lost, and a call that a deleted scheduled call held comes back. Today's chat is cleared at local midnight.
+You delete all of this with "Delete my data" in the app's settings or by deleting the app. The calls you bought are the exception: they stay on this device after both, so a paid call isn't lost, and a call that a deleted scheduled call held comes back if that call hasn't rung yet. Today's chat is cleared at local midnight.
 
 ### 2.2 Letters and chat with Santa (only after a grown-up agrees)
 
