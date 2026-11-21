@@ -36,11 +36,12 @@ The app keeps the following on your iPhone or iPad. It does not send it to us:
 - the scheduled call, its time and the reminder setting;
 - letter drafts, Santa's replies to letters (your "mailbox") and today's chat;
 - your choices: AI replies on or off, analytics on or off, and the end time of a lock on the grown-up check;
-- a sign-in token for our server (see 2.2).
+- a sign-in token for our server (see 2.2);
+- the calls you bought one at a time (2.4): how many are left, which scheduled call holds one, and Apple's transaction numbers of those purchases, so one purchase is never counted twice. They are kept in the iOS keychain of this device only: not in iCloud Keychain and not moved to another device by a backup.
 
 Notifications about the call, the reminder and Santa's letters are created on your device. Their text, which can include your child's name, does not pass through our server.
 
-You delete all of this with "Delete my data" in the app's settings or by deleting the app. Today's chat is cleared at local midnight.
+You delete all of this with "Delete my data" in the app's settings or by deleting the app. The calls you bought are the exception: they stay on this device after both, so a paid call isn't lost, and a call that a deleted scheduled call held comes back. Today's chat is cleared at local midnight.
 
 ### 2.2 Letters and chat with Santa (only after a grown-up agrees)
 
@@ -80,9 +81,9 @@ If your child's name is not in the list and you type it under "Can't find the na
 
 ### 2.4 Purchases
 
-Premium subscriptions are sold and charged by Apple through the App Store. We don't see your card details or your Apple ID. Apple tells the app which subscription is active and until when, so the app can unlock Premium. Apple's privacy policy covers the payment.
+Premium subscriptions and calls bought one at a time are sold and charged by Apple through the App Store. We don't see your card details or your Apple ID. Apple tells the app which subscription is active and until when, so the app can unlock Premium, and which calls were bought, so the app can add them (2.1). Apple's privacy policy covers the payment.
 
-When a subscription starts, renews, expires or is refunded, Apple's server sends our server a signed notice. We keep from it: the kind of event, the product, Apple's transaction numbers, the price and currency, the dates, and whether it was a test purchase. The notice has no name, no Apple ID and no anonymous ID, and we don't link it to the anonymous ID. We use it to count subscriptions and revenue. Our server sends a summary of each event (the event, the product, the price and currency) to Amplitude under a one-way code made from Apple's transaction number, not under any ID of your device.
+When a subscription starts, renews, expires or is refunded, and when a call is bought one at a time or refunded, Apple's server sends our server a signed notice. We keep from it: the kind of event, the product, Apple's transaction numbers, the price and currency, the dates, and whether it was a test purchase. The notice has no name, no Apple ID and no anonymous ID, and we don't link it to the anonymous ID. We use it to count purchases and revenue. Our server sends a summary of each event (the event, the product, the price and currency) to Amplitude under a one-way code made from Apple's transaction number, not under any ID of your device.
 
 The app itself also notices on your device when a subscription renews, is refunded or starts outside the app's subscription screen (for example after Ask to Buy approval, or on another device). It sends Amplitude a usage event with the kind of change and the product, without the price, under the app's random ID on this device (2.5). These events follow the usage-analytics switch: while it is off, the app doesn't send them, now or later.
 
@@ -117,7 +118,7 @@ The app does not use the microphone, your location or your contacts.
 
 - **From you and your child**, when you set up a call, write a letter or chat, type a name to be recorded, or email us.
 - **Automatically from the app**, for the anonymous ID, the language and time zone, the analytics events and the crash reports.
-- **From Apple**, for subscription status, notices about subscription events and App Store statistics.
+- **From Apple**, for subscription status and purchases, notices about purchases and App Store statistics.
 
 We don't buy data and we don't get data about you from data brokers or social networks.
 
@@ -130,8 +131,8 @@ We don't buy data and we don't get data about you from data brokers or social ne
 | Apply the free and Premium daily limits | Anonymous ID, daily counters, the signed subscription record (2.2) |
 | Keep children safe and prevent misuse | Moderation and the personal-details filter, per-minute request counts, technical logs, IP address (2.2) |
 | Choose which names to record next | Requested names and language (2.3) |
-| Sell and unlock Premium | Subscription status from Apple (2.4) |
-| Count subscriptions and revenue | Subscription notices from Apple, purchase events (2.4, 2.5) |
+| Sell and unlock Premium and single calls | Subscription status and purchases from Apple, calls bought on this device (2.1, 2.4) |
+| Count purchases and revenue | Purchase notices from Apple, purchase events (2.4, 2.5) |
 | Understand how the app is used and fix crashes | Analytics events, crash reports (2.5) |
 | Answer your questions | Your email (2.6) |
 | Meet legal duties | Records we must keep by law |
@@ -161,13 +162,14 @@ We don't ask for sensitive information such as health, religion or family proble
 | Requests per minute | Our server | 10 minutes |
 | Anonymous ID | Our server (Supabase) | Deleted after 90 days without a letter or a chat message, or at once with "Delete my data" in the app's settings. It holds no name, email or device identifier. Deleting it also deletes its counters and reply copies |
 | Requested names | Our server | Until the name is recorded, and no longer than 60 days. A request holds only the name, the language and the day |
-| Subscription notices from Apple | Our server | As long as accounting and tax law requires |
+| Purchase notices from Apple | Our server | As long as accounting and tax law requires |
 | Technical logs (anonymous ID, no child text) | Supabase | About 1 day |
 | Letter and chat text sent to OpenAI | OpenAI | We ask OpenAI not to store it for later use. Under OpenAI's API data policy it may still keep it for up to 30 days to detect abuse, then deletes it, unless the law requires longer |
 | Analytics events | Amplitude (United States) | Up to 1 year of history on our Amplitude plan. Deleted earlier on request |
 | Crash reports | Firebase Crashlytics | Up to 90 days |
 | Support emails | Our mailbox | As long as we need to answer you and keep a record of the request |
 | Data on your device | Your device | Until you delete it or the app; today's chat until local midnight |
+| Calls bought one at a time | Your device (iOS keychain, this device only) | Until the call is used; they stay after "Delete my data" and after deleting the app. Apple's transaction numbers of the purchases stay with them |
 
 ## 8. Who receives data
 
@@ -175,8 +177,8 @@ We share data only with the companies below. Apple handles purchases under its o
 
 | Provider | What it does for us | What it receives | Where |
 |---|---|---|---|
-| **Apple** (App Store, StoreKit) | Sells and renews subscriptions, delivers the app, sends our server notices about subscription events | Your purchase, handled under Apple's own privacy policy. The app sends Apple no data about letters, chat or calls | Apple's locations |
-| **Supabase** | Hosts our server and database; gives out the anonymous ID | Anonymous ID, requests from the app (letter and chat text passes through without being stored), the signed subscription record (checked, not stored), counters, reply copies, requested names, subscription notices, IP address, technical logs | EU (Frankfurt, Germany) |
+| **Apple** (App Store, StoreKit) | Sells subscriptions and single calls, renews subscriptions, delivers the app, sends our server notices about purchases | Your purchase, handled under Apple's own privacy policy. The app sends Apple no data about letters, chat or calls | Apple's locations |
+| **Supabase** | Hosts our server and database; gives out the anonymous ID | Anonymous ID, requests from the app (letter and chat text passes through without being stored), the signed subscription record (checked, not stored), counters, reply copies, requested names, purchase notices, IP address, technical logs | EU (Frankfurt, Germany) |
 | **OpenAI** | Checks texts for harmful content and writes Santa's replies | Letter or chat text after our filter, with your child's name replaced by a mark; the language; whether Santa writes to a boy or a girl. No name, anonymous ID or other identifier | United States |
 | **Amplitude** | Usage analytics (only if analytics is on) | Usage events, random app ID on the device, app version, device model, iOS version, language, IP address of the connection. From our server: subscription events with the product, price and currency under a one-way code | United States |
 | **Google** (Firebase Crashlytics) | Crash reports (only if analytics is on) | Crash reports, device model, iOS version, app version, random installation ID | United States |
@@ -204,8 +206,8 @@ Depending on where you live, you have the right to:
 
 - **AI replies:** turn off "Santa's personal replies" in the app's settings. Letters then get replies from templates, and the chat closes.
 - **Analytics and crash reports:** turn them off in the app's settings.
-- **Your data in the app and on our server:** in the app's settings (behind the grown-ups check), Privacy > "Delete my data". It deletes the letters, the chat, your child's name and scheduled calls on your device, and the anonymous ID with everything our server keeps under it. Premium stays with your Apple ID.
-- **Data on your device only:** delete the app.
+- **Your data in the app and on our server:** in the app's settings (behind the grown-ups check), Privacy > "Delete my data". It deletes the letters, the chat, your child's name and scheduled calls on your device, and the anonymous ID with everything our server keeps under it. Premium stays with your Apple ID, and the calls you bought one at a time stay on this device.
+- **Data on your device only:** delete the app. The calls you bought one at a time stay in this device's keychain, so a paid call isn't lost.
 - **Anything else:** write to tkachenko.daiv@gmail.com. We answer within one month.
 
 Because SantaCall has no accounts, for a request by email we usually can't tell which data on our server belongs to you; "Delete my data" in the app doesn't have this problem. Most of it disappears on its own (see section 7). If you write to us, we will help as far as we can find your data, and we may ask for details that help us find it. We won't ask for more information than we need.
@@ -222,7 +224,7 @@ Because SantaCall has no accounts, for a request by email we usually can't tell 
 
 ## 12. Children
 
-SantaCall is a family app. A grown-up sets up calls and buys Premium. A child takes part in the call and can write letters and chat with Santa with a grown-up nearby.
+SantaCall is a family app. A grown-up sets up calls and buys Premium or a single call. A child takes part in the call and can write letters and chat with Santa with a grown-up nearby.
 
 **The video call** works fully on the device. Nothing the child says or does in the call is recorded or sent, and the microphone is not used.
 
