@@ -262,6 +262,8 @@ No system is completely secure. If a breach affects your data, we will tell you 
 
 The app does not use cookies. It does not use the advertising identifier (IDFA), it does not track you across other companies' apps or websites, and it does not share data with data brokers.
 
+This website (santacall.github.io), including the Letter to Santa and the Naughty or Nice Test pages, uses no cookies, no analytics, no ads and no forms. A name, wishes or answers typed on these pages stay in your browser and are not sent to us. The test's result link holds only the answers, not the name. The site is hosted by GitHub Pages; GitHub may log technical data such as your IP address under its own privacy statement.
+
 ## 15. Changes to this policy
 
 When we change this policy, we update the effective date at the top. If a change is important, for example new data or a new provider, we will tell you in the app before it applies. If a change needs your consent, we will ask again.

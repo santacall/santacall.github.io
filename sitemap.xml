@@ -1,0 +1,29 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://santacall.github.io/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/support/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/privacy/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/terms/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/letter-to-santa/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/letter-to-santa/es/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/letter-to-santa/mx/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/letter-to-santa/pl/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/letter-to-santa/uk/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/letter-to-santa/de/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/letter-to-santa/fr/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/letter-to-santa/it/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/letter-to-santa/pt/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/naughty-or-nice-test/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/naughty-or-nice-test/es/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/naughty-or-nice-test/mx/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/naughty-or-nice-test/pl/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/naughty-or-nice-test/uk/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/naughty-or-nice-test/de/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/naughty-or-nice-test/fr/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/naughty-or-nice-test/it/</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://santacall.github.io/naughty-or-nice-test/pt/</loc><lastmod>2026-11-21</lastmod></url>
+</urlset>
