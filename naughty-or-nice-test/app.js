@@ -175,7 +175,8 @@
   const CW = 2100;
   const CH = 1500;
   const INK = { paper: '#fbf3e1', edge: 'rgba(205,176,116,0.34)', green: '#1d4a3f', gold: '#c99a2e', goldHi: '#f2c86b', red: '#a51d2a', redDeep: '#7c1320', navy: '#16224a', soft: '#55597a', cream: '#fff7e6' };
-  const F = { d: '"Fraunces", Georgia, serif', b: '"Figtree", Helvetica, Arial, sans-serif', h: '"Caveat", "Bradley Hand", cursive' };
+  // a dictionary can swap the families (js.certFonts) when the bundled fonts lack its letters (pl, uk)
+  const F = Object.assign({ d: '"Fraunces", Georgia, serif', b: '"Figtree", Helvetica, Arial, sans-serif', h: '"Caveat", "Bradley Hand", cursive' }, J.certFonts || {});
 
   function spaced(ctx, text, cx, y, gap) {
     const chars = Array.from(text);
